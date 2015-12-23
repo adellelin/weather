@@ -31,9 +31,12 @@ function setup() {
   function Int() {
     textAlign(RIGHT);
     makeInput();
-    
-    text("city A", sW / 4- 10, sH / 6);
-    text("Country A", sW / 4 - 10, sH / 4);
+    push();
+    textSize(28);
+    text ("A", sW / 4 + 20, sH / 12);
+    pop();
+    text("City", sW / 4- 10, sH / 6);
+    text("Country", sW / 4 - 10, sH / 4);
     intButton.remove();
     usaButton.remove();
     //buttonPressed();
@@ -41,8 +44,12 @@ function setup() {
   function Usa() {
     textAlign(RIGHT);
     makeInput();
-    text("city A", sW / 4 - 10, sH / 6);
-    text("State A", sW / 4 - 10, sH / 4);
+    push();
+    textSize(28);
+    text ("A", sW / 4 + 20, sH / 12);
+    pop();
+    text("City", sW / 4 - 10, sH / 6);
+    text("State", sW / 4 - 10, sH / 4);
     intButton.remove();
     usaButton.remove();
     //buttonPressed();
@@ -56,8 +63,12 @@ function setup() {
   function Int2() {
     textAlign(RIGHT);
     makeInput2();
-    text("city B", sW * 3 / 4 - 10, sH / 6);
-    text("Country B", sW * 3/ 4 - 10, sH / 4);
+    push();
+    textSize(28);
+    text ("B", sW * 3 / 4 + 20, sH / 12);
+    pop();
+    text("City", sW * 3 / 4 - 10, sH / 6);
+    text("Country", sW * 3/ 4 - 10, sH / 4);
     int2Button.remove();
     usa2Button.remove();
     button2Pressed();
@@ -65,8 +76,12 @@ function setup() {
   function Usa2() {
     textAlign(RIGHT);
     makeInput2();
-    text("city B", sW * 3 / 4 - 10, sH / 6);
-    text("State B", sW * 3 / 4 - 10, sH / 4);
+    push();
+    textSize(28);
+    text ("B", sW * 3 / 4 + 20, sH / 12);
+    pop();
+    text("City", sW * 3 / 4 - 10, sH / 6);
+    text("State", sW * 3 / 4 - 10, sH / 4);
     int2Button.remove();
     usa2Button.remove();
     button2Pressed();
@@ -140,6 +155,7 @@ function gotData(data) {
   weather = data;
   if (weather) {
     temp_f = weather.current_observation.temp_f;
+    temp_c = weather.current_observation.temp_c;
     var temp2 = map(temp_f, 0, 100, 0, 600);
     var fillRatio = temp_f / 100 * 255
     fill(fillRatio, fillRatio, fillRatio);
@@ -153,8 +169,9 @@ function gotData(data) {
     // }
     textAlign(CENTER);
     text(cityStr + ", " + countryStr, sW / 4, sH / 10);
-    text("current temp " + temp_f, sW / 4, sH / 2 - 20);
-    text(weather.current_observation.feelslike_f, sW / 4, sH / 2);
+    text("Temp " + temp_c + " c", sW / 4, sH / 2 - 40);
+    text("Temp " + temp_f + " f", sW / 4, sH / 2 - 20);
+    text("Feels " + weather.current_observation.feelslike_f + " f", sW / 4, sH / 2);
     text(weather.current_observation.weather, sW / 4, sH / 2 + 20);
     pop();
   }
@@ -167,6 +184,7 @@ function gotData2(data2) {
   //text(data.current_observation.weather, 200, 200);
     //fill((temp_f2 - temp_f)/200 *255, 100, 100, 50);
     temp_f2 = weather2.current_observation.temp_f;
+    temp_c2 = weather2.current_observation.temp_c;
     var temp = map(temp_f2, 0, 100, 0, 400);
     println(temp);
     var fillRatio = temp_f2 / 100 * 255
@@ -176,8 +194,9 @@ function gotData2(data2) {
     push();
     fill(50);
     text(cityStr2 + ", " + countryStr2, sW * 3 / 4, sH / 10);
-    text("current temp " + temp_f2, sW * 3 / 4, sH / 2 - 20);
-    text(weather2.current_observation.feelslike_f, sW * 3 / 4, sH / 2);
+    text("Temp " + temp_c2 + " c", sW * 3 / 4, sH / 2 - 40);
+    text("Temp " + temp_f2 + " f", sW * 3 / 4, sH / 2 - 20);
+    text("Feels " + weather2.current_observation.feelslike_f + " f", sW * 3 / 4, sH / 2);
     text(weather2.current_observation.weather, sW * 3 / 4, sH / 2 + 20);
     pop();
   }
@@ -200,8 +219,8 @@ function astData(moonData){
   var timeH = moonData.moon_phase.current_time.hour;
   var timeM = moonData.moon_phase.current_time.minute;
   textAlign(CENTER);
-  text(timeH + ":" + timeM, sW / 4, sH / 10 + 20);
-  text(moon, sW / 4, sH / 10 + 40);
+  text("Time " + timeH + ":" + timeM, sW / 4, sH / 10 + 20);
+  text("Moon Phase: " + moon, sW / 4, sH / 10 + 40);
 }
 function astData2(moonData2){
   fill(50);
@@ -209,6 +228,6 @@ function astData2(moonData2){
   var timeH = moonData2.moon_phase.current_time.hour;
   var timeM = moonData2.moon_phase.current_time.minute;
   textAlign(CENTER);
-  text(timeH + ":" + timeM, sW * 3 / 4, sH / 10 + 20);
-  text(moon, sW * 3 / 4, sH / 10 + 40);
+  text("Time " + timeH + ":" + timeM, sW * 3 / 4, sH / 10 + 20);
+  text("Moon Phase: " + moon, sW * 3 / 4, sH / 10 + 40);
 }
