@@ -17,7 +17,12 @@ var sH = screen.height;
 
 function setup() {
   createCanvas(sW, sH);
-  background(100,255,250);
+  background(255,100,135);
+  push();
+  fill(180);
+  noStroke();
+  rect(sW/2, 0, sW/2, sH);
+  pop();
   line(sW/2, 0, sW/2, sH);
   //loadJSON(url, gotData);
   //loadJSON(apiKey + countryStr + "/" + cityStr + json, gotData);
@@ -158,17 +163,19 @@ function gotData(data) {
     temp_c = weather.current_observation.temp_c;
     var temp2 = map(temp_f, 0, 100, 0, 600);
     var fillRatio = temp_f / 100 * 255
-    fill(fillRatio, fillRatio, fillRatio);
-    fill(temp_f / 100 * 255, 100, 100);
+    //fill(fillRatio, fillRatio, fillRatio);
+    fill(fillRatio, 100, 135);
     println(temp2);
+    noStroke();
     ellipse(sW / 4, sH / 2, temp2, temp2);
     push();
-    fill(50);
     // if (weather2){
     //   //background((temp_f2 - temp_f)/200 *255, 100, 100);
     // }
     textAlign(CENTER);
+    fill(50);
     text(cityStr + ", " + countryStr, sW / 4, sH / 10);
+    fill(255);
     text("Temp " + temp_c + " c", sW / 4, sH / 2 - 40);
     text("Temp " + temp_f + " f", sW / 4, sH / 2 - 20);
     text("Feels " + weather.current_observation.feelslike_f + " f", sW / 4, sH / 2);
@@ -185,15 +192,17 @@ function gotData2(data2) {
     //fill((temp_f2 - temp_f)/200 *255, 100, 100, 50);
     temp_f2 = weather2.current_observation.temp_f;
     temp_c2 = weather2.current_observation.temp_c;
-    var temp = map(temp_f2, 0, 100, 0, 400);
+    var temp = map(temp_f2, 0, 100, 0, 600);
     println(temp);
     var fillRatio = temp_f2 / 100 * 255
     fill(fillRatio, fillRatio, fillRatio);
+    noStroke();
     ellipse(sW * 3 / 4, sH / 2, temp, temp);
     textAlign(CENTER);
     push();
     fill(50);
     text(cityStr2 + ", " + countryStr2, sW * 3 / 4, sH / 10);
+    fill(255);
     text("Temp " + temp_c2 + " c", sW * 3 / 4, sH / 2 - 40);
     text("Temp " + temp_f2 + " f", sW * 3 / 4, sH / 2 - 20);
     text("Feels " + weather2.current_observation.feelslike_f + " f", sW * 3 / 4, sH / 2);
