@@ -19,11 +19,11 @@ function setup() {
   createCanvas(sW, sH);
   background(255,100,135);
   push();
-  fill(180);
+  fill(0,51,102);
   noStroke();
   rect(sW/2, 0, sW/2, sH);
   pop();
-  line(sW/2, 0, sW/2, sH);
+  //line(sW/2, 0, sW/2, sH);
   //loadJSON(url, gotData);
   //loadJSON(apiKey + countryStr + "/" + cityStr + json, gotData);
   usaButton = createButton ("USA");
@@ -142,7 +142,7 @@ function drawWeather() {
 }
 
 function drawWeather2() {
-  line(sW/2, 0, sW/2, sH);
+  //line(sW/2, 0, sW/2, sH);
   city2.input.remove();
   country2.input.remove();
   countryStr2 = String(country2.input.value());
@@ -195,7 +195,7 @@ function gotData2(data2) {
     var temp = map(temp_f2, 0, 100, 0, 600);
     println(temp);
     var fillRatio = temp_f2 / 100 * 255
-    fill(fillRatio, fillRatio, fillRatio);
+    fill(0, 51, random(fillRatio));
     noStroke();
     ellipse(sW * 3 / 4, sH / 2, temp, temp);
     textAlign(CENTER);
